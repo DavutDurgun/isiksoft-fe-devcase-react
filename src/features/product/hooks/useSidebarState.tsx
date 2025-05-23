@@ -22,11 +22,13 @@ export const useSidebarState = () => {
       );
       if (parentItem) {
         setActiveMenu(parentItem.path);
+      } else {
+        setActiveMenu("");
       }
-    }
 
-    if (isOpen && window.innerWidth < 768) {
-      setIsOpen(false);
+      if (window.innerWidth < 768) {
+        setIsOpen(false);
+      }
     }
   };
 
@@ -85,7 +87,7 @@ export const useSidebarState = () => {
     if (currentPathParent && currentPathParent !== activeMenu) {
       setActiveMenu(currentPathParent);
     }
-  }, [location.pathname]);
+  }, [location.pathname, activeMenu]);
 
   return {
     activeMenu,
