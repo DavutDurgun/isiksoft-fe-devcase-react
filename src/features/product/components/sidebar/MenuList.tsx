@@ -45,7 +45,7 @@ const MenuList: React.FC<MenuListProps> = React.memo(
               to={item.path}
               end={true}
               className={({ isActive: navLinkIsActive }) => {
-                const baseClasses = `flex items-center p-2 rounded-md transition-colors duration-200 cursor-pointer
+                const baseClasses = `flex items-center px-2 rounded-md transition-colors duration-200 cursor-pointer
                 ${isOpen ? "justify-start" : "justify-center"} ${
                   isOpen ? "" : "w-full"
                 }`;

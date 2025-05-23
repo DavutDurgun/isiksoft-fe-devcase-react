@@ -1,6 +1,9 @@
+// src/types/menuItem.ts
+import React from "react";
+
 export interface MenuItem {
   name: string;
-  icon: string;
+  icon: React.ReactNode;
   path: string;
   subItems?: MenuItem[];
   badge?: number;
