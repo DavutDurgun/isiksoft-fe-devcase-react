@@ -10,19 +10,13 @@ const MainLayout: React.FC = () => {
     <div className="flex min-h-screen bg-gray-50">
       <Sidebar />
 
-      {/* Ana İçerik Alanı */}
       <main
         className={`
         flex-1 p-8 transition-all duration-300
-        // Masaüstü için margin-left'i ayarla
         md:${isOpen ? "ml-64" : "ml-20"} 
-        
-        // Mobil için margin-left'i sıfırla (fixed sidebar olduğu için)
         ml-0
-        
-        // Kalan yüksekliği ve genişliği kapla
         min-h-screen w-full
-        overflow-y-auto // Main alanı da scroll edilebilir olsun
+        overflow-y-auto  
       `}
       >
         <Outlet />
