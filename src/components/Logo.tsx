@@ -1,4 +1,5 @@
 import React from "react";
+import { SwatchIcon } from "@heroicons/react/24/outline";
 
 const Logo: React.FC<{ isOpen: boolean }> = ({ isOpen }) => (
   <div
@@ -7,9 +8,10 @@ const Logo: React.FC<{ isOpen: boolean }> = ({ isOpen }) => (
     }`}
   >
     {isOpen && (
-      <span className="text-2xl font-bold text-gray-800">
-        master <span className="font-normal">POS</span>
-      </span>
+      <>
+        <SwatchIcon className="h-8 w-8 text-indigo-600" />{" "}
+        <span className="text-xl font-bold text-gray-800">master POS</span>
+      </>
     )}
   </div>
 );

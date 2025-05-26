@@ -1,4 +1,3 @@
-// src/features/product/mock/index.ts
 import React from "react";
 import {
   HomeIcon,

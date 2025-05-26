@@ -7,6 +7,8 @@ import "./all-products-page.css";
 import Header from "@/features/product/components/table/ProductTableHeader";
 import ProductTable from "@/features/product/components/table/ProductTable";
 import Pagination from "@/components/Pagination";
+import Navbar from "@/features/product/components/Navbar";
+import ProductStatsCards from "@/features/product/components/ProductStatsCards";
 
 const AllProductsPage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -18,6 +20,8 @@ const AllProductsPage: React.FC = () => {
   const [selectedProductIds, setSelectedProductIds] = useState<Set<number>>(
     new Set()
   );
+
+  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
 
   const currentPage = parseInt(searchParams.get("page") || "1", 10);
 
@@ -70,7 +74,7 @@ const AllProductsPage: React.FC = () => {
     }
   };
 
-  const masterCheckboxRef = useRef<HTMLInputElement>(null);
+  const masterCheckboxRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     if (masterCheckboxRef.current) {
@@ -92,6 +96,10 @@ const AllProductsPage: React.FC = () => {
     console.log("Ürünleri filtrele");
   };
 
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen bg-gray-100 p-4">
@@ -109,36 +117,46 @@ const AllProductsPage: React.FC = () => {
   }
 
   return (
-    <div className="p-6 bg-white min-h-screen">
-      <Header
-        onAddProduct={handleAddNewProduct}
-        onRefresh={handleRefreshProducts}
-        onFilter={handleFilterProducts}
-      />
+    <div className="min-h-screen flex">
+      <div className="flex-1 flex flex-col">
+        <Navbar onMenuToggle={toggleSidebar} />
 
-      {products.length === 0 && !loading ? (
-        <div className="p-6 text-center text-gray-600 bg-white rounded-lg shadow-md">
-          Henüz hiç ürün bulunmamaktadır.
-        </div>
-      ) : (
-        <ProductTable
-          products={products}
-          selectedProductIds={selectedProductIds}
-          onSelectProduct={handleSelectProduct}
-          onSelectAll={handleSelectAll}
-          masterCheckboxRef={masterCheckboxRef}
-        />
-      )}
+        <main className="flex-1 mt-6 ">
+          <ProductStatsCards />
+          <div className="bg-white p-6 rounded-lg shadow-md mt-6">
+            {" "}
+            {/* mt-6 ile kartlar arasından boşluk */}
+            <Header
+              onAddProduct={handleAddNewProduct}
+              onRefresh={handleRefreshProducts}
+              onFilter={handleFilterProducts}
+            />
+            {products.length === 0 && !loading ? (
+              <div className="p-6 text-center text-gray-600">
+                Henüz hiç ürün bulunmamaktadır.
+              </div>
+            ) : (
+              <ProductTable
+                products={products}
+                selectedProductIds={selectedProductIds}
+                onSelectProduct={handleSelectProduct}
+                onSelectAll={handleSelectAll}
+                masterCheckboxRef={masterCheckboxRef}
+              />
+            )}
+          </div>
 
-      {totalPages > 0 && (
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          totalItems={totalItems}
-          onPageChange={handlePageChange}
-          loading={loading}
-        />
-      )}
+          {totalPages > 0 && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              totalItems={totalItems}
+              onPageChange={handlePageChange}
+              loading={loading}
+            />
+          )}
+        </main>
+      </div>
     </div>
   );
 };

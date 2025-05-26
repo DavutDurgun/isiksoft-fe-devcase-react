@@ -22,7 +22,6 @@ const Pagination: React.FC<PaginationProps> = ({
     let startPage = Math.max(1, currentPage - Math.floor(maxPagesToShow / 2));
     const endPage = Math.min(totalPages, startPage + maxPagesToShow - 1);
 
-    // Eğer son sayfaya yakınsak, başlangıcı ayarla ki hep 5 sayfa görelim
     if (endPage - startPage + 1 < maxPagesToShow) {
       startPage = Math.max(1, endPage - maxPagesToShow + 1);
     }
@@ -63,8 +62,8 @@ const Pagination: React.FC<PaginationProps> = ({
               px-3 py-1.5 rounded-md transition-colors text-sm
               ${
                 page === currentPage
-                  ? "bg-[#5D3FD3] text-white shadow-md" // Aktif sayfa
-                  : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50" // Pasif sayfa
+                  ? "bg-[#5D3FD3] text-white shadow-md"
+                  : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50"
               }
             `}
           >

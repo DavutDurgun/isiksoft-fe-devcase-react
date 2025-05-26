@@ -13,7 +13,6 @@ const ScanBarcodePage: React.FC = () => (
   <div className="p-4">Barkod Tarama İçeriği Burada</div>
 );
 
-// App bileşeni
 const App: React.FC = () => {
   return (
     <Router>

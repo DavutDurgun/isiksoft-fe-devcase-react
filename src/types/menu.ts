@@ -1,4 +1,3 @@
-// src/types/menuItem.ts
 import React from "react";
 
 export interface MenuItem {

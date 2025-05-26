@@ -1,5 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router";
+import { ChevronDoubleRightIcon } from "@heroicons/react/24/outline";
 import ToggleButton from "@/components/ToggleButton";
 import SearchBar from "@/components/SearchBar";
 import Logo from "@/components/Logo";
@@ -33,23 +34,10 @@ const Sidebar: React.FC = () => {
     <>
       {!isOpen && (
         <button
-          className="md:hidden fixed top-4 left-4 z-50 p-2 rounded-md bg-white shadow-md text-gray-700"
+          className="md:hidden fixed top-4 left-0 z-50  p-2 rounded-md hover:bg-gray-200 focus:outline-none transition-colors duration-300"
           onClick={() => setIsOpen(true)}
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-          </svg>
+          <ChevronDoubleRightIcon className="h-6 w-6" />
         </button>
       )}
 
