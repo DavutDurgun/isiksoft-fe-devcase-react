@@ -56,9 +56,9 @@ const Navbar: React.FC<NavbarProps> = ({ onMenuToggle }) => {
               }`}
             >
               {isDarkMode ? (
-                <MoonIcon className="h-4 w-4 text-white" />
+                <SunIcon className="h-4 w-4 text-white" />
               ) : (
-                <SunIcon className="h-4 w-4 text-gray-600" />
+                <MoonIcon className="h-4 w-4 text-gray-600" />
               )}
             </span>
           </button>
@@ -71,7 +71,7 @@ const Navbar: React.FC<NavbarProps> = ({ onMenuToggle }) => {
             <button className="p-2 text-gray-600 hover:bg-gray-100 rounded-md">
               <BellIcon className="h-6 w-6" />
             </button>
-            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold px-1.5 py-0.5 rounded-full">
+            <span className="absolute -top-1 -right-1 bg-[#CDFF65] text-black text-xs font-bold px-1.5 py-0.5 rounded-full">
               12
             </span>
           </div>
