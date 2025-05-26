@@ -98,7 +98,7 @@ const AllProductsPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex bg-gray-100 ">
+    <div className="min-h-screen flex  ">
       <div className="flex-1 flex flex-col">
         {/* Navbar, MainLayout'ta olduğu için burada kaldırıldı */}
         {/* <Navbar onMenuToggle={toggleSidebar} /> */}
