@@ -1,0 +1,13 @@
+.selected-row {
+  position: relative;
+}
+
+.selected-row::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background-color: #7b68ee;
+}

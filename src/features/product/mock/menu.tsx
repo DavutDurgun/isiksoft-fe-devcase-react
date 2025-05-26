@@ -36,9 +36,9 @@ export const MENU_SECTIONS: MenuSectionType[] = [
         icon: <CubeIcon className="w-5 h-5" />,
         subItems: [
           {
-            name: "All Products",
+            name: "Products",
             icon: <ChartBarIcon className="w-5 h-5" />,
-            path: "/products/all",
+            path: "/products",
           },
           {
             name: "Add New Product",

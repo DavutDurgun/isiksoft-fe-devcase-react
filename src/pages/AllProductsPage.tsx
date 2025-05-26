@@ -1,0 +1,146 @@
+import React, { useEffect, useState, useCallback, useRef } from "react";
+import { useSearchParams } from "react-router";
+import ProductService from "@/services/productService";
+import type { Product } from "@/types";
+import "./all-products-page.css";
+
+import Header from "@/features/product/components/table/ProductTableHeader";
+import ProductTable from "@/features/product/components/table/ProductTable";
+import Pagination from "@/components/Pagination";
+
+const AllProductsPage: React.FC = () => {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+  const [totalPages, setTotalPages] = useState<number>(1);
+  const [totalItems, setTotalItems] = useState<number>(0);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [selectedProductIds, setSelectedProductIds] = useState<Set<number>>(
+    new Set()
+  );
+
+  const currentPage = parseInt(searchParams.get("page") || "1", 10);
+
+  const fetchProducts = useCallback(async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const responseData = await ProductService.getAllProducts(currentPage);
+      setProducts(responseData.data);
+      setTotalPages(responseData.totalPages);
+      setTotalItems(responseData.totalItems);
+    } catch (err: any) {
+      console.error("Ürünler yüklenirken hata oluştu:", err);
+      setError(err.response?.data?.message || "Ürünler yüklenemedi.");
+    } finally {
+      setLoading(false);
+    }
+  }, [currentPage]);
+
+  useEffect(() => {
+    fetchProducts();
+  }, [fetchProducts]);
+
+  const handleSelectAll = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.checked) {
+      const allIds = new Set(products.map((p) => p.id));
+      setSelectedProductIds(allIds);
+    } else {
+      setSelectedProductIds(new Set());
+    }
+  };
+
+  const handleSelectProduct = (
+    productId: number,
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const newSelection = new Set(selectedProductIds);
+    if (event.target.checked) {
+      newSelection.add(productId);
+    } else {
+      newSelection.delete(productId);
+    }
+    setSelectedProductIds(newSelection);
+  };
+
+  const handlePageChange = (page: number) => {
+    if (page >= 1 && page <= totalPages) {
+      searchParams.set("page", page.toString());
+      setSearchParams(searchParams);
+    }
+  };
+
+  const masterCheckboxRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (masterCheckboxRef.current) {
+      masterCheckboxRef.current.indeterminate =
+        selectedProductIds.size > 0 &&
+        selectedProductIds.size < products.length;
+    }
+  }, [selectedProductIds, products]);
+
+  const handleAddNewProduct = () => {
+    console.log("Yeni ürün ekle");
+  };
+
+  const handleRefreshProducts = () => {
+    fetchProducts();
+  };
+
+  const handleFilterProducts = () => {
+    console.log("Ürünleri filtrele");
+  };
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen bg-gray-100 p-4">
+        <p className="text-lg text-[#161919]">Ürünler yükleniyor...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex justify-center items-center h-screen bg-gray-100 p-4">
+        <p className="text-lg text-red-600">Hata: {error}</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="p-6 bg-white min-h-screen">
+      <Header
+        onAddProduct={handleAddNewProduct}
+        onRefresh={handleRefreshProducts}
+        onFilter={handleFilterProducts}
+      />
+
+      {products.length === 0 && !loading ? (
+        <div className="p-6 text-center text-gray-600 bg-white rounded-lg shadow-md">
+          Henüz hiç ürün bulunmamaktadır.
+        </div>
+      ) : (
+        <ProductTable
+          products={products}
+          selectedProductIds={selectedProductIds}
+          onSelectProduct={handleSelectProduct}
+          onSelectAll={handleSelectAll}
+          masterCheckboxRef={masterCheckboxRef}
+        />
+      )}
+
+      {totalPages > 0 && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          totalItems={totalItems}
+          onPageChange={handlePageChange}
+          loading={loading}
+        />
+      )}
+    </div>
+  );
+};
+
+export default AllProductsPage;
