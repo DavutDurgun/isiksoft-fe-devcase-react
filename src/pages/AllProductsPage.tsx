@@ -7,6 +7,7 @@ import "./all-products-page.css";
 import Header from "@/features/product/components/table/ProductTableHeader";
 import ProductTable from "@/features/product/components/table/ProductTable";
 import Pagination from "@/components/Pagination";
+
 import ProductStatsCards from "@/features/product/components/ProductStatsCards";
 
 const AllProductsPage: React.FC = () => {
@@ -23,9 +24,9 @@ const AllProductsPage: React.FC = () => {
   const currentPage = parseInt(searchParams.get("page") || "1", 10);
 
   const fetchProducts = useCallback(async () => {
+    setLoading(true);
+    setError(null);
     try {
-      setLoading(true);
-      setError(null);
       const responseData = await ProductService.getAllProducts(currentPage);
       setProducts(responseData.data);
       setTotalPages(responseData.totalPages);
@@ -33,6 +34,7 @@ const AllProductsPage: React.FC = () => {
     } catch (err: any) {
       console.error("Ürünler yüklenirken hata oluştu:", err);
       setError(err.response?.data?.message || "Ürünler yüklenemedi.");
+      setProducts([]);
     } finally {
       setLoading(false);
     }
@@ -40,6 +42,8 @@ const AllProductsPage: React.FC = () => {
 
   useEffect(() => {
     fetchProducts();
+
+    setSelectedProductIds(new Set());
   }, [fetchProducts]);
 
   const handleSelectAll = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -93,35 +97,31 @@ const AllProductsPage: React.FC = () => {
     console.log("Ürünleri filtrele");
   };
 
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center h-screen bg-gray-100 p-4">
-        <p className="text-lg text-[#161919]">Ürünler yükleniyor...</p>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="flex justify-center items-center h-screen bg-gray-100 p-4">
-        <p className="text-lg text-red-600">Hata: {error}</p>
-      </div>
-    );
-  }
-
   return (
-    <div className="min-h-screen flex">
+    <div className="min-h-screen flex bg-gray-100 ">
       <div className="flex-1 flex flex-col">
-        <main className="flex-1 mt-6 ">
+        {/* Navbar, MainLayout'ta olduğu için burada kaldırıldı */}
+        {/* <Navbar onMenuToggle={toggleSidebar} /> */}
+
+        <main className="flex-1 p-6 ">
           <ProductStatsCards />
-          <div className="bg-white p-6 rounded-lg shadow-md mt-6">
+          <div className="bg-white p-6 rounded-lg shadow-md mt-6  ">
             <Header
               onAddProduct={handleAddNewProduct}
               onRefresh={handleRefreshProducts}
               onFilter={handleFilterProducts}
             />
-            {products.length === 0 && !loading ? (
-              <div className="p-6 text-center text-gray-600">
+
+            {loading ? (
+              <div className="flex justify-center items-center py-10">
+                <p className="text-lg text-[#161919] ">Ürünler yükleniyor...</p>
+              </div>
+            ) : error ? (
+              <div className="flex justify-center items-center py-10">
+                <p className="text-lg text-red-600 ">Hata: {error}</p>
+              </div>
+            ) : products.length === 0 ? (
+              <div className="p-6 text-center text-gray-600 ">
                 Henüz hiç ürün bulunmamaktadır.
               </div>
             ) : (
@@ -135,7 +135,7 @@ const AllProductsPage: React.FC = () => {
             )}
           </div>
 
-          {totalPages > 0 && (
+          {totalPages > 0 && !loading && !error && products.length > 0 && (
             <Pagination
               currentPage={currentPage}
               totalPages={totalPages}
