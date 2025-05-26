@@ -14,7 +14,7 @@ export interface MenuItemProps {
 
 const MenuItemComponent: React.FC<MenuItemProps> = React.memo(
   ({ item, isOpen, isActive, isSubMenu = false, activeMenu, onMenuClick }) => {
-    const baseClasses = `flex items-center p-2 rounded-md transition-colors duration-200 cursor-pointer ${
+    const baseClasses = `flex items-center w-full p-2 rounded-md transition-colors duration-200 cursor-pointer ${
       isOpen ? "" : "w-full"
     }`;
 
@@ -42,12 +42,11 @@ const MenuItemComponent: React.FC<MenuItemProps> = React.memo(
           onClick={() => onMenuClick(item.path, true)}
         >
           <div className="flex items-center px-2">
-            {" "}
             <span className={isOpen ? "mr-2" : ""}>{item.icon}</span>
             <span className={isOpen ? "" : "hidden"}>{item.name}</span>
           </div>
-          {item.badge && isOpen && <Badge count={item.badge} />}{" "}
-          {isOpen && <ExpandIcon isExpanded={activeMenu === item.path} />}{" "}
+          {item.badge && isOpen && <Badge count={item.badge} />}
+          {isOpen && <ExpandIcon isExpanded={activeMenu === item.path} />}
         </div>
       );
     }

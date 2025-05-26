@@ -45,10 +45,8 @@ const MenuList: React.FC<MenuListProps> = React.memo(
               to={item.path}
               end={true}
               className={({ isActive: navLinkIsActive }) => {
-                const baseClasses = `flex items-center px-2 rounded-md transition-colors duration-200 cursor-pointer
-                ${isOpen ? "justify-start" : "justify-center"} ${
-                  isOpen ? "" : "w-full"
-                }`;
+                const baseClasses = `flex items-center px-2 rounded-md transition-colors duration-200 cursor-pointer w-full
+                ${isOpen ? "justify-start" : "justify-center"} `;
 
                 const activeHoverClasses = navLinkIsActive
                   ? isSubMenu
