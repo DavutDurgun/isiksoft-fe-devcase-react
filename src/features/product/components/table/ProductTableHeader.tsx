@@ -23,7 +23,7 @@ const ProductTableHeader: React.FC<ProductTableHeaderProps> = ({
     <div className="flex flex-col sm:flex-row justify-between items-start md:items-center mb-6 space-y-4 md:space-y-0 w-full">
       <h1 className="text-[20px] font-bold text-[#333333]">All Products</h1>
       <div className="flex justify-end gap-1 w-full md:w-auto">
-        {/* Arama Çubuğu - Masaüstünde tamamen görünür */}
+        {/* Arama Çubuğu  */}
         <div className="relative flex-grow hidden lg:block">
           <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
           <input
@@ -33,7 +33,7 @@ const ProductTableHeader: React.FC<ProductTableHeaderProps> = ({
           />
         </div>
 
-        {/* Mercek İkonlu Arama Butonu - Tablet ve Mobilde görünür */}
+        {/* Mercek İkonlu Arama Butonu */}
         <button className="p-2 border border-gray-300 rounded-md text-gray-600 hover:bg-gray-100 transition-colors lg:hidden">
           <MagnifyingGlassIcon className="h-5 w-5" />
         </button>

@@ -7,7 +7,6 @@ import "./all-products-page.css";
 import Header from "@/features/product/components/table/ProductTableHeader";
 import ProductTable from "@/features/product/components/table/ProductTable";
 import Pagination from "@/components/Pagination";
-import Navbar from "@/features/product/components/Navbar";
 import ProductStatsCards from "@/features/product/components/ProductStatsCards";
 
 const AllProductsPage: React.FC = () => {
@@ -20,8 +19,6 @@ const AllProductsPage: React.FC = () => {
   const [selectedProductIds, setSelectedProductIds] = useState<Set<number>>(
     new Set()
   );
-
-  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
 
   const currentPage = parseInt(searchParams.get("page") || "1", 10);
 
@@ -96,10 +93,6 @@ const AllProductsPage: React.FC = () => {
     console.log("Ürünleri filtrele");
   };
 
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
-
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen bg-gray-100 p-4">
@@ -119,13 +112,9 @@ const AllProductsPage: React.FC = () => {
   return (
     <div className="min-h-screen flex">
       <div className="flex-1 flex flex-col">
-        <Navbar onMenuToggle={toggleSidebar} />
-
         <main className="flex-1 mt-6 ">
           <ProductStatsCards />
           <div className="bg-white p-6 rounded-lg shadow-md mt-6">
-            {" "}
-            {/* mt-6 ile kartlar arasından boşluk */}
             <Header
               onAddProduct={handleAddNewProduct}
               onRefresh={handleRefreshProducts}

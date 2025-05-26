@@ -39,7 +39,6 @@ const Pagination: React.FC<PaginationProps> = ({
         {Math.min(totalItems, currentPage * 20)} from {totalItems} data
       </div>
       <div className="flex justify-center items-center space-x-2">
-        {/* Sol Ok Butonu */}
         <button
           onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage === 1 || loading}
@@ -71,7 +70,6 @@ const Pagination: React.FC<PaginationProps> = ({
           </button>
         ))}
 
-        {/* Sağ Ok Butonu */}
         <button
           onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage === totalPages || loading}

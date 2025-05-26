@@ -24,7 +24,7 @@ const Navbar: React.FC<NavbarProps> = ({ onMenuToggle }) => {
   };
 
   return (
-    <nav className="bg-white p-4 rounded-lg shadow-sm flex items-center justify-between">
+    <nav className="bg-white p-4 lg:rounded-lg shadow-sm flex items-center justify-between">
       {/* Sol Kısım: Logo, Başlık ve Arama Çubuğu */}
       <div className="flex items-center">
         <div className="flex md:hidden items-center space-x-2 mr-6">
@@ -40,7 +40,7 @@ const Navbar: React.FC<NavbarProps> = ({ onMenuToggle }) => {
 
       {/* Sağ Kısım: İkonlar ve Kullanıcı Bilgileri */}
       <div className="flex items-center space-x-4">
-        {/* Desktop İkonları (LG ve üzeri ekranlarda görünür) */}
+        {/* Desktop İkonları   */}
         <div className="hidden lg:flex items-center space-x-4">
           <button
             className="flex items-center p-1 bg-gray-200 rounded-full cursor-pointer relative w-16 h-8 focus:outline-none"
@@ -96,7 +96,7 @@ const Navbar: React.FC<NavbarProps> = ({ onMenuToggle }) => {
           </div>
           <div className="flex flex-col text-right">
             <span className="text-sm font-semibold text-gray-800">
-              Patricia Peter
+              Davut DURGUN
             </span>
             <span className="text-xs text-gray-500">Super Admin</span>
           </div>

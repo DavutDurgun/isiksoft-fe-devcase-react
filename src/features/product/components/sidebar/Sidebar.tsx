@@ -34,7 +34,7 @@ const Sidebar: React.FC = () => {
     <>
       {!isOpen && (
         <button
-          className="md:hidden fixed top-4 left-0 z-50  p-2 rounded-md hover:bg-gray-200 focus:outline-none transition-colors duration-300"
+          className="md:hidden fixed top-12 left-0 z-50  p-2 rounded-md hover:bg-gray-200 focus:outline-none transition-colors duration-300"
           onClick={() => setIsOpen(true)}
         >
           <ChevronDoubleRightIcon className="h-6 w-6" />
