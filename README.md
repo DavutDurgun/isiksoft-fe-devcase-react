@@ -6,7 +6,8 @@ Işıksoft Frontend DevCase Challenge Project
 
 Bu proje, React.js kullanılarak geliştirilmiş basit bir ürün yönetim paneli uygulamasıdır. Ürünleri listeleme, filtreleme ve temel ürün istatistiklerini görüntüleme gibi özelliklere sahiptir.
 
- 
+ ## Demo / Canlı
+https://isiksoft-fe-devcase-react-yxo6.vercel.app/
 
 ## Özellikler
 
