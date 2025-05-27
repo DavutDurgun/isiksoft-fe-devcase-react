@@ -6,44 +6,7 @@ Işıksoft Frontend DevCase Challenge Project
 
 Bu proje, React.js kullanılarak geliştirilmiş basit bir ürün yönetim paneli uygulamasıdır. Ürünleri listeleme, filtreleme ve temel ürün istatistiklerini görüntüleme gibi özelliklere sahiptir.
 
-## Proje Yapısı
-
-Proje, iyi organize edilmiş bir klasör yapısına sahiptir:
-
-├── public/
-├── src/
-│ ├── api/ # API istekleri için Axios instance
-│ │ └── axiosInstance.ts
-│ ├── assets/ # Statik dosyalar (resimler vb.)
-│ ├── components/ # Genel amaçlı yeniden kullanılabilir UI bileşenleri
-│ │ ├── Logo.tsx
-│ │ ├── Pagination.tsx
-│ │ ├── SearchBar.tsx
-│ │ └── ToggleButton.tsx
-│ ├── features/ # Belirli özelliklere (domain) ait bileşenler, hook'lar, mock veriler
-│ │ └── product/
-│ │ ├── components/
-│ │ │ ├── ProductStatsCards.tsx
-│ │ │ └── table/
-│ │ │ ├── ProductTable.tsx
-│ │ │ └── ProductTableHeader.tsx
-│ │ ├── hooks/
-│ │ │ └── useSidebarState.ts
-│ │ └── mock.ts
-│ ├── layouts/ # Uygulama genelinde kullanılan layout'lar
-│ │ └── MainLayout.tsx
-│ ├── pages/ # Uygulamanın ana sayfaları
-│ │ ├── AllProductsPage.tsx
-│ │ ├── HomePage.tsx
-│ │ └── ... (AddNewProductPage, ScanBarcodePage gibi dummy sayfalar)
-│ ├── services/ # API servisleri
-│ │ └── productService.ts
-│ ├── types/ # TypeScript tip tanımları
-│ │ └── product.ts
-│ ├── App.tsx # Ana uygulama bileşeni ve yönlendirme
-│ ├── index.css # Global CSS stilleri
-│ └── main.tsx # Uygulama başlangıç noktası
-└── vite-env.d.ts # Vite ortam tip tanımları
+ 
 
 ## Özellikler
 
