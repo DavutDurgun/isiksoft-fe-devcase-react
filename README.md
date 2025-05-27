@@ -37,7 +37,7 @@ Projeyi yerel makinenizde çalıştırmak için aşağıdaki adımları izleyin:
 1.  Depoyu klonlayın:
 
     ```bash
-    git clone <depo-adresiniz>
+    git clone https://github.com/DavutDurgun/isiksoft-fe-devcase-react
     cd urun-yonetim-paneli
     ```
 
