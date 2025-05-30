@@ -16,8 +16,8 @@ https://isiksoft-fe-devcase-react-yxo6.vercel.app/
 - **Ürün Seçimi**: Tablodaki ürünleri tek tek veya toplu seçebilme.
 - **Duyarlı Tasarım**: Mobil ve masaüstü görünümlerine uyumlu sidebar ve navbar yapısı.
 - **API Entegrasyonu**: `axios` kullanarak sahte bir API'den ürün verilerini çeker.
-- **CSS Mor Çizgi Ekleme**: Seçili tablo satırlarının solunda mor bir çizgi (`.selected-row::before`) gösterilir.
-- **Navigasyon**: `react-router-dom` ile sayfalar arası yönlendirme.
+- **Store**: `zustand` ile sayfalar store yapısı.
+- **Navigasyon**: `react-router` ile sayfalar arası yönlendirme.
 - **Dark/Light Mode (Hazır)**: Temel dark/light mode geçişi için bir buton (`Navbar.tsx` içinde) bulunmaktadır.
 - **Yan Menü (Sidebar)**: Açılıp kapanabilen, durumunu yöneten bir yan menü.
 
@@ -29,6 +29,7 @@ https://isiksoft-fe-devcase-react-yxo6.vercel.app/
 - **Tailwind CSS**: Hızlı UI geliştirme için.
 - **React Router DOM**: Sayfa yönlendirmesi için.
 - **Axios**: API istekleri için.
+- **Zustand**: Store için.
 - **Heroicons**: İkonlar için.
 
 ## Kurulum ve Çalıştırma
